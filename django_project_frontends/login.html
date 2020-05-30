@@ -1,0 +1,57 @@
+<!-- Latest compiled and minified CSS -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+	 <meta charset="UTF-8">
+    <title>STUDENT MANAGEMENT SYSTEM</title>
+    <link rel='icon' type='png' href='C:\Users\ritik\Desktop\icon.png'>
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="login.css">
+<script src="login.js"></script>
+   
+
+
+
+</head>
+
+  
+
+<body>
+  
+  <div class="main">
+  	
+    <p class="sign" align="center"><b>LOG IN</b> </p>
+    <form class="form1" id='myform'>
+      <input class="un " type="text" align="center" id="USER_NAME" placeholder="Username" required>
+      <input class="pass" type="password" align="center" id="PASSWORD" placeholder="Password" required>
+      <input class="un" type="text" align="center" id="USERTYPE" placeholder="Enter T for teacher and S for student"  required>
+         <button class ="submit" id="login" onclick="myFunction()">Login</button> 
+         <p color="red" id="p01"></p>
+</form>
+<script>
+  function myFunction() {
+    var message, x;
+    message = document.getElementById("p01");
+    message.innerHTML = "";
+    x = document.getElementById("PASSWORD").value;
+    try {
+      if(x == "") throw "empty";
+
+    }
+    catch(err) {
+      message.innerHTML = "Input is " + err;
+    }
+  }
+  </script>            
+                
+    </div>
+     
+</body>
+
+</html>

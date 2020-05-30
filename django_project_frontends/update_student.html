@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  
+	 <meta charset="UTF-8">
+    <title>UPDATE STUDENT</title>
+    <link rel='icon' type='png' href='C:\Users\ritik\Desktop\icon.png'>
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="login.css">
+
+
+
+
+<script src="update_student.js"></script>
+
+
+<body>
+  <div class="main" id="update">
+  <form id="updateform">	
+    <p class="sign" align="center"><b>UPDATE</b> </p>
+    <input class="un" type="text" align="center" id="USER_NAME" name="USER_NAME"  placeholder="USER_NAME" required><br>
+    <input class="fn" type="text" align="center" id="father_name" name="father_name"  placeholder="FATHER NAME"required><br>
+    <input class="em" type="text" align="center" id="email" name="email"  placeholder="EMAIL" required><br>
+    <input class="br" type="text" align="center" id="branch" name="branch"  placeholder="BRANCH" required><br>
+    <input class="cn" type="text" align="center" id="phone_no" name="phone_no"  placeholder="CONTACT NUMBER" required><br>
+   
+
+  <button class ="submit" id="login">UPDATE</button> 
+         <p color="red" id="p01"></p>
+</form>
+<script>
+window.onload = function () {
+  var url = document.location.href;
+      params = url.split('=')[1];
+
+  console.log(params);
+  document.getElementById('USER_NAME').value = params;
+  
+}
+
+</script>        
+                
+    </div>
+     
+</body>
