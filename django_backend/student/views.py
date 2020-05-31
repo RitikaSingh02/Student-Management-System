@@ -123,7 +123,7 @@ def taskUpdate(request):
     email=data['email']
     branch=data['branch']
     phone_no=data['phone_no']
-    users.objects.filter(USER_NAME=USER_NAME).update(father_name=father_name,email=email,branch=branch,phone_no=phone_no)
+    
     students.objects.filter(USER_NAME=USER_NAME).update(father_name=father_name,email=email,branch=branch,phone_no=phone_no)
 
     return JsonResponse("success",safe=False)

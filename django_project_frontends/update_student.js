@@ -22,9 +22,12 @@ $(document).ready(function() {
              
                 success: function(data)
                 {
-                console.log(data);
+                alert(data);
               
                     
+                },
+                error:function(){
+                    alert("an error occured");
                 }
                 
             });
