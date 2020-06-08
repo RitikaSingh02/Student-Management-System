@@ -1,0 +1,56 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<body align="center">
+<link rel='icon' type='png' href='C:\Users\ritik\Desktop\icon.png'>
+<script src="query_rejection.js"></script>
+<script src="query_approve.js"></script>
+
+<!-- <script src="style.css"></script> -->
+<table id = "table" class = "table table-hover"></table> 
+    <script>
+    var tblSomething="";
+    function rejection(value){
+        
+        submitfun(document.getElementById("del-"+value).innerHTML);
+    }
+    
+    function updation(value){
+        console.log(value);
+        submitfun1(document.getElementById("del-"+value).innerHTML);
+        
+    }
+    window.onload=function(){
+    var x=0;
+    var tblSomething= '<thead > <tr class="success"> <td><b> USER_NAME</b> </td><td><b>DATE</b></td></tr> </thead>'; 
+    var request=new XMLHttpRequest();
+    var url= 'http://127.0.0.1:8000/users/ans_query/';
+    request.open("GET",url,true);
+    request.setRequestHeader("Content-Type", "application/json");
+    
+    request.onreadystatechange = function () {
+            
+            if (this.readyState == 4 && this.status == 200){
+                data=JSON.parse(this.response);
+                console.log(data);
+                for(x in data){
+                    tblSomething += '<tr>';
+                    tblSomething += '<td id="del-'+x+'" class="success">' +data[x].USER_NAME+'</td><td>'+data[x].date+'</td ><td> <button type="button" class="btn btn-success" onclick="updation('+x+')">APPROVE</button></td>'+
+                    '<td><button type="button" class="btn btn-danger" onclick="rejection('+x+')">REJECT</button></td></tr>';
+                    
+                }
+                
+                document.getElementById("table").innerHTML=tblSomething;
+        }
+    
+    };
+    request.send();
+    }
+    
+    
+    </script>
+
+    
+
+
+  
+    </body>
+

@@ -1,80 +1,15 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <body align="center">
 <link rel='icon' type='png' href='C:\Users\ritik\Desktop\icon.png'>
 <script src="student_deletion.js"></script>
 <script src="update_student.js"></script>
 <!-- <script src="style.css"></script> -->
-<script> 
-    $(function(){
-      $("#includedContent").load("b.html"); 
-    });
-    </script> 
+<table id = "table" class = "table table-hover"></table> 
+
     <script>
-    $(function(){
-
-    $.ajax({
-    url: 'http://127.0.0.1:8000/users/students/',
-    data: '',
-    dataType: 'json',
-    async: true,
-    method: "GET",
-    success: function(data){
-
-    //If the REST API returned a successful response it'll be stored in data, 
-    //just parse that field using jQuery and you're all set
-
-    var tblSomething = '<thead > <tr class="success"> <td><b> USER_NAME</b> </td>   </tr> </thead> <tbody>';
-    var b=[];
-    var x=0;
-    var y;
-    $.each(data, function(idx, obj){
-
-    //Outer .each loop is for traversing the JSON rows
-    tblSomething += '<tr >';
-
-    //Inner .each loop is for traversing JSON columns
-  
-    
-    $.each(obj, function(key, value){
-    
-    var a=obj['USER_NAME'];
-
-    if(key=="USER_NAME"){
-    
-    
-    b.push(a);
-    console.log(b[x]);
-    x++;
-    y=x;
-    console.log(y);
-    tblSomething += '<td id="del-'+x+'" class="success">' + value+'<td > <button type="button" class="btn btn-danger" onclick="deletion('+x+')">DELETE</button></td>'+
-    '<td><button type="button" class="btn btn-success" onclick="updation('+x+')">UPDATE</button></td>';
-    
-}});
-    tblSomething += '</tr>';
-
-    });
-    
-    tblSomething += '</tbody>';
-    console.log(b.length);
-    $('#tblSomething').html(tblSomething);
-    },
-    error: function(jqXHR, textStatus, errorThrown){
-    alert('Hey, something went wrong because: ' + errorThrown);
-    }
-    });
- 
-    
- 
-    });
-
+    var tblSomething="";
     function deletion(value){
         
         submitfun(document.getElementById("del-"+value).innerHTML);
@@ -83,16 +18,60 @@
     function updation(value){
         
         var b=document.getElementById("del-"+value).innerHTML;
-        url='http://localhost/files/update_student.html?un='+encodeURIComponent(b);
-        window.location.href=url;
+        // var c=document.getElementById("ps-"+value).innerHTML;
+        var d=document.getElementById("fn-"+value).innerHTML;
+        var e=document.getElementById("em-"+value).innerHTML;
+        var f=document.getElementById("br-"+value).innerHTML;
+        var g=document.getElementById("ph-"+value).innerHTML;
+        url='http://localhost/files/update_student.html?'+encodeURIComponent(b)+
+        '?'+encodeURIComponent(d)+'?'+encodeURIComponent(e)+
+        '?'+encodeURIComponent(f)+
+        '?'+encodeURIComponent(g);
+        window.open(url,
+        '_blank');//do write it in two lines else it wont work
         
     }
+    window.onload=function(){
+
+    var x=0;
+    var tblSomething= '<thead > <tr class="success"> <td><b> USER_NAME</b> </td><td><b>FATHER NAME</b></td><td><b>EMAIL</b></td><td><b>BRANCH</b></td><td><b>CONTACT NUMBER</b></td></tr> </thead>'; 
+    var request=new XMLHttpRequest();
+    var url= 'http://127.0.0.1:8000/users/students/';
+    request.open("GET",url,true);
+    request.setRequestHeader("Content-Type", "application/json");
+    
+    request.onreadystatechange = function () {
+            
+            if (this.readyState == 4 && this.status == 200){
+                data=JSON.parse(this.response);
+                console.log(data);
+                for(x in data){
+                    tblSomething += '<tr>';
+                    tblSomething += '<td id="del-'+x+'" class="success">' +data[x].USER_NAME+'</td><td id="fn-'+x+'">'
+                    +data[x].father_name+'</td ><td id="em-'+x+'">'
+                    +data[x].email+'</td><td id="br-'+x+'">'
+                    +data[x].branch+'</td><td id="ph-'+x+'">'
+                    +data[x].phone_no+
+                    '</td><td><button  class="btn btn-success" onclick="updation('+x+')">UPDATE</button></td>'+
+                    '<td><button " class="btn btn-danger" onclick="deletion('+x+')">DELETE</button></td></tr>';
+                    
+                }
+                
+                document.getElementById("table").innerHTML=tblSomething;
+        }
+    
+    };
+    request.send();
+    }
+    
+
     </script>
 
-<table id = "tblSomething" class = "table table-hover"></table> 
 
+<br><br><br>
 <a href="http://localhost/files/insert_student.html" target="_blank"><button align="center">INSERT A STUDENT</button></a><br><br>
-
+<a href="http://localhost/files/ans_query.html" target="_blank"><button align="center">CLICK TO ANS QUERY</button></a><br><br>
+<a href="http://localhost/files/portallogin.html"><butto align="center">LOGOUT</butto></a>
 <br><br> 
   
 </body>

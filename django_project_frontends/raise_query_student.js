@@ -1,8 +1,8 @@
 function update() {
     var xhttp = new XMLHttpRequest();
-    var url = "http://127.0.0.1:8000/users/update/";
-    xhttp.open("POST", url, true);
-    xhttp.setRequestHeader("Content-Type", "application/json");
+    var url = "http://127.0.0.1:8000/users/query_update/";
+    request.open("POST", url, true);
+    request.setRequestHeader("Content-Type", "application/json");
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
        alert(this.responseText);
@@ -10,7 +10,7 @@ function update() {
       }
       else
       {
-          alert("not updated");
+          alert("request has not been approved yet");
       }
     
 
